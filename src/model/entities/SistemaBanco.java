@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class SistemaBanco {
     private Conta conta;
-    private List<Conta> contas = new ArrayList<Conta>();
+    private List<Conta> contas;
 
     public SistemaBanco(Conta conta, List<Conta> contas) {
         this.conta = conta;

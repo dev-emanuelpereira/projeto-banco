@@ -9,7 +9,7 @@ public abstract class Banco {
 
     public static void banco_fechado () {
         System.out.println("Obrigado por utilizar o nosso Banco!");
-        new Scanner(System.in).next();
+        new Scanner(System.in).close();
         System.exit(0);
     };
 
