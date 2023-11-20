@@ -50,10 +50,14 @@ public class ContaService {
             if (contaDuplicada.getCpf().equals(cpf)) {
                 System.out.println(String.format("ERRO: Conta bancária já cadastrada com o CPF %d.", cpf));
                 return;
-            } 
+            }
         }
 
         conta.setContaAtiva(ContaAtiva.SIM);
+
+        System.out.println("Por ter criado uma conta nova, você acaba de ganhar R$ 50,00!");
+
+        conta.setSaldo(50.00);
         sistemaBanco.getContas().add(conta);
         
         
@@ -72,11 +76,6 @@ public class ContaService {
         List<Conta> contas = sistemaBanco.getContas();
         
         for (Conta conta : contas) {
-            System.out.println("CPF fornecido: " + cpf);
-            System.out.println("Ano de Nascimento fornecido: " + ano_nascimento);
-            System.out.println("CPF na conta: " + conta.getCpf());
-            System.out.println("Ano de Nascimento na conta: " + conta.getAno_de_nascimento());
-
             boolean contaEncontrada = false;
             if (conta.getCpf().equals(cpf) && conta.getAno_de_nascimento().equals(ano_nascimento)) {
                 contaEncontrada = true;
@@ -88,20 +87,17 @@ public class ContaService {
             if (!contaEncontrada) {
                 System.out.println("Erro: a conta referenciada não existe.");   
             }
-                
-            
         }
         return null;
     }
 
-    public boolean verificar_conta_existente(Long cpf) {
-        List<Conta> contas = sistemaBanco.getContas();
-        for (Conta conta : contas) {
-            if (conta.getCpf() == cpf) {
-                System.out.println(String.format("ERRO: Conta bancária já cadastrada com o CPF %d.", cpf));
-                return true;
-            }
-        }
-        return false;
+    public void sacar () {
+        Scanner input = new Scanner(System.in);
+        manipuladorString.centralizar_texto("Qual valor deseja sacar?");
+        System.out.println("Valor: R$ ");
+        Double valor = input.nextDouble();
+
+         
+        
     }
 }

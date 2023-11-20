@@ -49,7 +49,7 @@ public class BancoController {
         Scanner input = new Scanner(System.in);
         manipuladorString.centralizar_texto(String.format("O que deseja fazer hoje, %s?", conta.getTitular_conta()));
         System.out.println(String.format("""
-                SALDO TOTAL: %d 
+                SALDO TOTAL: R$ %.2f 
 
                 1 -> Sacar
                 2 -> Depositar
