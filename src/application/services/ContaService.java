@@ -15,7 +15,7 @@ public class ContaService {
     private SistemaBanco sistemaBanco;
     private ManipuladorString manipuladorString;
 
-    Scanner input = new Scanner(System.in);
+
 
     public ContaService() {
         
@@ -27,6 +27,7 @@ public class ContaService {
     }
 
     public void criarConta () {
+        Scanner input = new Scanner(System.in);
         manipuladorString.centralizar_texto("INSIRA AS INFORMAÇÕES PARA CRIAR SUA CONTA");
         Conta conta = new Conta();
 
@@ -34,39 +35,73 @@ public class ContaService {
         String nome = input.nextLine();
         conta.setTitular_conta(nome);
 
+
         System.out.println("CPF: ");
-        Integer cpf = input.nextInt();
+        Long cpf = input.nextLong();
         conta.setCpf(cpf);
+        
 
         System.out.println("ANO DE NASCIMENTO: ");
         Integer ano_de_nascimento = input.nextInt();
         conta.setAno_de_nascimento(ano_de_nascimento);
 
-        conta.setContaAtiva(ContaAtiva.SIM);
+        List<Conta> contas = sistemaBanco.getContas();
+        for (Conta contaDuplicada : contas) {
+            if (contaDuplicada.getCpf().equals(cpf)) {
+                System.out.println(String.format("ERRO: Conta bancária já cadastrada com o CPF %d.", cpf));
+                return;
+            } 
+        }
 
+        conta.setContaAtiva(ContaAtiva.SIM);
         sistemaBanco.getContas().add(conta);
+        
+        
     }
 
-    public void entrarConta() {
+    public Conta entrarConta() {
+        Scanner input = new Scanner(System.in);
+
         manipuladorString.centralizar_texto("INSIRA AS INFORMAÇÕES PARA ENTRAR NA SUA CONTA\n");
         System.out.println("CPF: ");
-        Integer cpf = input.nextInt();
+        Long cpf = input.nextLong();
 
-        System.out.println("ANO DE NASCIMENTO");
+        System.out.println("ANO DE NASCIMENTO: ");
         Integer ano_nascimento = input.nextInt();
 
-        List<Conta> contas = new ArrayList<>();
+        List<Conta> contas = sistemaBanco.getContas();
+        
         for (Conta conta : contas) {
-            if (conta.getCpf() == cpf || conta.getAno_de_nascimento() == ano_nascimento){
-                System.out.println("CONTA VALIDA");
-            } else {
-                System.out.println("CONTA NAO ENCONTRADA NO SISTEMA");
+            System.out.println("CPF fornecido: " + cpf);
+            System.out.println("Ano de Nascimento fornecido: " + ano_nascimento);
+            System.out.println("CPF na conta: " + conta.getCpf());
+            System.out.println("Ano de Nascimento na conta: " + conta.getAno_de_nascimento());
+
+            boolean contaEncontrada = false;
+            if (conta.getCpf().equals(cpf) && conta.getAno_de_nascimento().equals(ano_nascimento)) {
+                contaEncontrada = true;
+                Conta contaEntrar = conta;
+                return contaEntrar;
+
             }
+        
+            if (!contaEncontrada) {
+                System.out.println("Erro: a conta referenciada não existe.");   
+            }
+                
+            
         }
+        return null;
     }
 
-    public Double depositar (Double valor_depositar) {
-        conta.setSaldo(+valor_depositar);
-        return conta.getSaldo(); 
+    public boolean verificar_conta_existente(Long cpf) {
+        List<Conta> contas = sistemaBanco.getContas();
+        for (Conta conta : contas) {
+            if (conta.getCpf() == cpf) {
+                System.out.println(String.format("ERRO: Conta bancária já cadastrada com o CPF %d.", cpf));
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -3,8 +3,7 @@ package model.entities;
 import java.util.Scanner;
 
 public abstract class Banco {
-    
-    
+
     public abstract void banco_aberto ();
 
     public static void banco_fechado () {

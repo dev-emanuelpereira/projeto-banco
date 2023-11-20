@@ -11,8 +11,6 @@ public class BancoController {
     private Conta conta;
     private SistemaBancoService sistemaBancoService;
     private ManipuladorString manipuladorString;
-    
-    public Scanner input = new Scanner(System.in);
 
     public BancoController (SistemaBancoService sistemaBancoService, ManipuladorString manipuladorString) {
         this.sistemaBancoService = sistemaBancoService;
@@ -24,6 +22,7 @@ public class BancoController {
 
     public void tela_inicial () {
         while (true){
+            Scanner input = new Scanner(System.in);
             manipuladorString.centralizar_texto("BEM VINDO AO BANCO!");
             System.out.println(
                     """
@@ -36,16 +35,29 @@ public class BancoController {
             );
 
             Integer opcao = input.nextInt();
-            sistemaBancoService.calcular_regras(opcao);
+            Conta conta = sistemaBancoService.calcular_regras(opcao);
+            if (opcao == 2) {
+                tela_entrar_conta(conta);
+            }
+            
+            
         }
 
     }
 
+    public void tela_entrar_conta (Conta conta) {
+        Scanner input = new Scanner(System.in);
+        manipuladorString.centralizar_texto(String.format("O que deseja fazer hoje, %s?", conta.getTitular_conta()));
+        System.out.println(String.format("""
+                SALDO TOTAL: %d 
 
-    public static void depositar () {
-        
-        
-    };
+                1 -> Sacar
+                2 -> Depositar
+                3 -> Fazer transferencia
 
-    
+                4 -> Sair da Conta
+                """, conta.getSaldo()));
+                Integer opcao = input.nextInt();
+
+    }
 }

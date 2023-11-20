@@ -28,6 +28,11 @@ public class SistemaBanco {
         this.contas = contas;
     }
 
+    @Override
+    public String toString() {
+        return "SistemaBanco [conta=" + conta + ", contas=" + contas + "]";
+    }
+
     
 
     

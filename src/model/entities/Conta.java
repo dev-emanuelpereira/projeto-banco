@@ -9,7 +9,7 @@ public class Conta extends Banco {
     private Long numero_conta;
     private String titular_conta;
     private Integer ano_de_nascimento;
-    private Integer cpf;
+    private Long cpf;
     private Double saldo;
     private ContaAtiva contaAtiva;
 
@@ -18,7 +18,7 @@ public class Conta extends Banco {
     }
 
 
-    public Conta(String titular_conta, Double saldo, ContaAtiva contaAtiva, Integer ano_de_nascimento, Integer cpf) {
+    public Conta(String titular_conta, Double saldo, ContaAtiva contaAtiva, Integer ano_de_nascimento, Long cpf) {
         this.titular_conta = titular_conta;
         this.saldo = saldo;
         this.contaAtiva = contaAtiva;
@@ -83,13 +83,20 @@ public class Conta extends Banco {
     }
 
 
-    public Integer getCpf() {
+    public Long getCpf() {
         return cpf;
     }
 
 
-    public void setCpf(Integer cpf) {
+    public void setCpf(Long cpf) {
         this.cpf = cpf;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Conta [numero_conta=" + numero_conta + ", titular_conta=" + titular_conta + ", ano_de_nascimento="
+                + ano_de_nascimento + ", cpf=" + cpf + ", saldo=" + saldo + ", contaAtiva=" + contaAtiva + "]";
     }
 
 

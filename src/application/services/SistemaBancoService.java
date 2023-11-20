@@ -17,19 +17,20 @@ public class SistemaBancoService {
         this.manipuladorString = manipuladorString;
     }
 
-    public void calcular_regras (int opcao_numero) {
+    public Conta calcular_regras (int opcao_numero) {
         switch (opcao_numero){
             case 1:
                 contaService.criarConta();
                 break;
             case 2:
-                contaService.entrarConta();
-                break;
+                Conta conta = contaService.entrarConta();
+                return conta;
             case 3:
                 Banco.banco_fechado();
                 break;
                 
 
         }
+        return null;
     }
 }
