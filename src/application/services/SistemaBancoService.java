@@ -17,7 +17,7 @@ public class SistemaBancoService {
         this.manipuladorString = manipuladorString;
     }
 
-    public Conta calcular_regras (int opcao_numero) {
+    public Conta calcular_regras_tela_inicial (int opcao_numero) {
         switch (opcao_numero){
             case 1:
                 contaService.criarConta();
@@ -27,10 +27,24 @@ public class SistemaBancoService {
                 return conta;
             case 3:
                 Banco.banco_fechado();
-                break;
-                
-
+                break; 
         }
         return null;
+    }
+
+    public void calcular_regras_entrar_conta (int opcao_numero, Conta conta) {
+        switch (opcao_numero) {
+            case 1:
+                contaService.sacar(conta);
+                break;
+            case 2:
+                contaService.depositar(conta);
+                break;
+            case 3:
+                contaService.fazerTransferencia(conta);
+            case 4:
+                contaService.exibirInformações(conta);
+                break;
+        }
     }
 }

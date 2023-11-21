@@ -1,16 +1,19 @@
 package model.entities;
 
+import java.util.Random;
+
 import application.representation.BancoController;
 import model.enums.ContaAtiva;
 
 public class Conta extends Banco {
     BancoController bancoController;
 
-    private Long numero_conta;
+    private String numero_conta;
     private String titular_conta;
     private Integer ano_de_nascimento;
     private Long cpf;
-    private Double saldo;
+    private Double saldo = 0.0;
+    private String tipoConta;
     private ContaAtiva contaAtiva;
 
 
@@ -18,21 +21,33 @@ public class Conta extends Banco {
     }
 
 
-    public Conta(String titular_conta, Double saldo, ContaAtiva contaAtiva, Integer ano_de_nascimento, Long cpf) {
+    public Conta(String numero_conta, String titular_conta, Double saldo, ContaAtiva contaAtiva, Integer ano_de_nascimento, Long cpf, String tipoConta) {
+        this.numero_conta = numero_conta;
         this.titular_conta = titular_conta;
         this.saldo = saldo;
         this.contaAtiva = contaAtiva;
         this.ano_de_nascimento = ano_de_nascimento;
         this.cpf = cpf;
+        this.tipoConta = tipoConta;
     }
 
 
-    public Long getNumero_conta() {
+    public String getTipoConta() {
+        return tipoConta;
+    }
+
+
+    public void setTipoConta(String tipoConta) {
+        this.tipoConta = tipoConta;
+    }
+
+
+    public String getNumero_conta() {
         return numero_conta;
     }
 
 
-    public void setNumero_conta(Long numero_conta) {
+    public void setNumero_conta(String numero_conta) {
         this.numero_conta = numero_conta;
     }
 
@@ -98,8 +113,4 @@ public class Conta extends Banco {
         return "Conta [numero_conta=" + numero_conta + ", titular_conta=" + titular_conta + ", ano_de_nascimento="
                 + ano_de_nascimento + ", cpf=" + cpf + ", saldo=" + saldo + ", contaAtiva=" + contaAtiva + "]";
     }
-
-
-
-    
 }
