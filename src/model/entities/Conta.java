@@ -6,6 +6,7 @@ import application.representation.BancoController;
 import model.enums.ContaAtiva;
 
 public class Conta extends Banco {
+
     BancoController bancoController;
 
     private String numero_conta;
@@ -15,13 +16,24 @@ public class Conta extends Banco {
     private Double saldo = 0.0;
     private String tipoConta;
     private ContaAtiva contaAtiva;
+    private String senha;
+
+
+    public String getSenha() {
+        return senha;
+    }
+
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
 
     public Conta() {
     }
 
 
-    public Conta(String numero_conta, String titular_conta, Double saldo, ContaAtiva contaAtiva, Integer ano_de_nascimento, Long cpf, String tipoConta) {
+    public Conta(String numero_conta, String titular_conta, Double saldo, ContaAtiva contaAtiva, Integer ano_de_nascimento, Long cpf, String tipoConta, String senha) {
         this.numero_conta = numero_conta;
         this.titular_conta = titular_conta;
         this.saldo = saldo;
@@ -29,6 +41,7 @@ public class Conta extends Banco {
         this.ano_de_nascimento = ano_de_nascimento;
         this.cpf = cpf;
         this.tipoConta = tipoConta;
+        this.senha = senha;
     }
 
 

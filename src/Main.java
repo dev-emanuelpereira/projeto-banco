@@ -3,6 +3,7 @@
 import application.representation.BancoController;
 import application.services.ContaService;
 import application.services.SistemaBancoService;
+import config.Formatador;
 import config.ManipuladorString;
 import model.entities.Conta;
 import model.entities.SistemaBanco;
@@ -15,9 +16,10 @@ public class Main {
         List<Conta> contas = new ArrayList<Conta>();
         Conta conta = new Conta();
         
+        Formatador formatador = new Formatador();
         ManipuladorString manipuladorString = new ManipuladorString();
         SistemaBanco sistemaBanco = new SistemaBanco(conta, contas);
-        ContaService contaService = new ContaService(conta, manipuladorString, sistemaBanco);
+        ContaService contaService = new ContaService(conta, manipuladorString, sistemaBanco, formatador);
         SistemaBancoService sistemaBancoService = new SistemaBancoService(contaService, manipuladorString);
         BancoController bancoController = new BancoController(sistemaBancoService, manipuladorString);
         

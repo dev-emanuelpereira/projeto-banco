@@ -42,8 +42,12 @@ public class SistemaBancoService {
                 break;
             case 3:
                 contaService.fazerTransferencia(conta);
+                break;
             case 4:
-                contaService.exibirInformações(conta);
+                contaService.exibirInformações(conta, conta.getCpf());
+                break;
+            case 6:
+                contaService.fecharConta(conta, conta.getCpf(), conta.getSenha());
                 break;
         }
     }
