@@ -20,7 +20,7 @@ public class Main {
         ManipuladorString manipuladorString = new ManipuladorString();
         SistemaBanco sistemaBanco = new SistemaBanco(conta, contas);
         ContaService contaService = new ContaService(conta, manipuladorString, sistemaBanco, formatador);
-        SistemaBancoService sistemaBancoService = new SistemaBancoService(contaService, manipuladorString);
+        SistemaBancoService sistemaBancoService = new SistemaBancoService(contaService, manipuladorString, formatador, sistemaBanco);
         BancoController bancoController = new BancoController(sistemaBancoService, manipuladorString);
         
         bancoController.tela_inicial();

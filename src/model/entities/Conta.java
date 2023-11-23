@@ -1,5 +1,6 @@
 package model.entities;
 
+import java.time.LocalDate;
 import java.util.Random;
 
 import application.representation.BancoController;
@@ -11,7 +12,7 @@ public class Conta extends Banco {
 
     private String numero_conta;
     private String titular_conta;
-    private Integer ano_de_nascimento;
+    private LocalDate data_nascimento;
     private Long cpf;
     private Double saldo = 0.0;
     private String tipoConta;
@@ -33,12 +34,12 @@ public class Conta extends Banco {
     }
 
 
-    public Conta(String numero_conta, String titular_conta, Double saldo, ContaAtiva contaAtiva, Integer ano_de_nascimento, Long cpf, String tipoConta, String senha) {
+    public Conta(String numero_conta, String titular_conta, Double saldo, ContaAtiva contaAtiva, LocalDate data_nascimento, Long cpf, String tipoConta, String senha) {
         this.numero_conta = numero_conta;
         this.titular_conta = titular_conta;
         this.saldo = saldo;
         this.contaAtiva = contaAtiva;
-        this.ano_de_nascimento = ano_de_nascimento;
+        this.data_nascimento = data_nascimento;
         this.cpf = cpf;
         this.tipoConta = tipoConta;
         this.senha = senha;
@@ -101,13 +102,13 @@ public class Conta extends Banco {
     }
 
 
-    public Integer getAno_de_nascimento() {
-        return ano_de_nascimento;
+    public LocalDate getData_nascimento() {
+        return data_nascimento;
     }
 
 
-    public void setAno_de_nascimento(Integer ano_de_nascimento) {
-        this.ano_de_nascimento = ano_de_nascimento;
+    public void setData_nascimento(LocalDate data_nascimento) {
+        this.data_nascimento = data_nascimento;
     }
 
 
@@ -123,7 +124,7 @@ public class Conta extends Banco {
 
     @Override
     public String toString() {
-        return "Conta [numero_conta=" + numero_conta + ", titular_conta=" + titular_conta + ", ano_de_nascimento="
-                + ano_de_nascimento + ", cpf=" + cpf + ", saldo=" + saldo + ", contaAtiva=" + contaAtiva + "]";
+        return "Conta [numero_conta=" + numero_conta + ", titular_conta=" + titular_conta + ", data_nascimento="
+                + data_nascimento + ", cpf=" + cpf + ", saldo=" + saldo + ", contaAtiva=" + contaAtiva + "]";
     }
 }

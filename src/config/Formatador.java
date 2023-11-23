@@ -1,30 +1,24 @@
 package config;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Formatador {
-    public String formatar_data(String data) {
-
-        SimpleDateFormat formatoOriginal = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat formatoComBarra = new SimpleDateFormat("dd/MM/yyyy");
-
-        try {
-            Date dataNascimento = formatoOriginal.parse(data);
-            String dataFormatadaComBarra = formatoComBarra.format(dataNascimento);
-
-            return dataFormatadaComBarra;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public static String formatar_data(LocalDate data_nascimento) {
         
+        String data_formatada = String.format("%d/%d/%d", data_nascimento.getDayOfMonth(), data_nascimento.getMonthValue(), data_nascimento.getYear());
+
+        return data_formatada;
     }
-    public String formatar_cpf (Long cpf) {
-        String cpf_formatado = "" + cpf;
-        cpf_formatado = cpf_formatado.replaceAll("(\\d{2})(\\d{3})(\\d{3})(\\d{4})(\\d{2})", "$1.$2.$3-$4");
-        return cpf_formatado;
+
+    public String formatar_cpf (Long cpfLong) {
+        
+        String cpf_formatado = String.valueOf(cpfLong);
+
+        while (cpf_formatado.length() < 11) {
+            cpf_formatado = "0" + cpf_formatado;
+        }
+
+        return cpf_formatado.substring(0, 3) + "." + cpf_formatado.substring(3, 6) + "." + cpf_formatado.substring(6, 9) + "-" + cpf_formatado.substring(9);
     }
 
 }
